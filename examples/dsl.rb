@@ -3,7 +3,8 @@ require 'helioth'
 ## En rails utiliser I18n.available_locales
 LOCALES = [:fr, :en, :pt]
 
-auth = Helioth::Helioth.new
+#auth = Helioth::Helioth.new
+auth = Helioth.new
 
 ## Set roles for User, Instance and Feature
 auth.roles do

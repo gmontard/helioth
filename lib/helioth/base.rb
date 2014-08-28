@@ -1,5 +1,5 @@
 module Helioth
-  class Helioth
+  class Base
     def initialize
     end
 

@@ -1,6 +1,12 @@
+module Helioth
+  def self.new()
+    Base.new
+  end
+end
+
 require "helioth/version"
-require 'helioth/helioth'
-require 'helioth/role.rb'
+require 'helioth/base'
+require 'helioth/role'
 require 'helioth/relation'
 require 'helioth/features'
 require 'helioth/feature'
