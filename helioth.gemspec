@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "helioth"
   spec.version       = Helioth::VERSION
   spec.authors       = ["Guillaume Montard"]
-  spec.email         = ["guillaume.montard@vodeclic.com"]
+  spec.email         = ["guillaume.montard@gmail.com"]
   spec.summary       = %q{Feature rollout and flipping}
   spec.description   = %q{Simple way to manage your feature rollout for customers and users}
   spec.homepage      = ""
