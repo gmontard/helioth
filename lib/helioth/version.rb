@@ -1,0 +1,3 @@
+module Helioth
+  VERSION = "0.0.1"
+end
