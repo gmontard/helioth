@@ -3,7 +3,6 @@ require 'helioth'
 ## En rails utiliser I18n.available_locales
 LOCALES = [:fr, :en, :pt]
 
-#auth = Helioth::Helioth.new
 auth = Helioth.new
 
 ## Set roles for User, Instance and Feature
@@ -116,7 +115,7 @@ puts "Is feature :tutoring authorized for user role :beta"
 puts auth.authorized_for_user?(:tutoring, :beta)
 puts "\n"
 
-puts "Is feature :tutoring with action :send authorized for user role :beta"
+puts "Is feature :tutoring with action :send authorized for user role :critical"
 puts auth.authorized_for_user?(:tutoring, :send, :critical)
 puts "\n"
 
@@ -124,10 +123,10 @@ puts "Is feature :tutoring authorized for instance role :beta"
 puts auth.authorized_for_instance?(:tutoring, :beta)
 puts "\n"
 
-puts "Is feature :tutoring with action :send authorized for instance role :critical"
+puts "Is feature :tutoring with action :send authorized for instance role :beta"
 puts auth.authorized_for_instance?(:tutoring, :send, :beta)
 puts "\n"
 
-puts "Is feature :tutoring with actions :send and :index is authorized for instance role :critical"
+puts "Is feature :tutoring with actions :send and :index is authorized for instance role :pre_release"
 puts auth.authorized_for_instance?(:tutoring, [:send, :index], :pre_release)
 puts "\n"
