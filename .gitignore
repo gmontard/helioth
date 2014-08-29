@@ -21,3 +21,4 @@ tmp
 *.a
 mkmf.log
 .DS_Store
+*.log

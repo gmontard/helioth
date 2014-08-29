@@ -2,10 +2,14 @@ class TestController < ApplicationController
 
   layout "application"
 
-  helper_method :current_user
+  helper_method :current_user, :current_instance
 
   def current_user
     User.new(role: "standard", instance:{role: "beta"})
+  end
+
+  def current_instance
+    current_user.instance
   end
 
   def index

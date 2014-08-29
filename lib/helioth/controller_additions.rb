@@ -1,10 +1,22 @@
 module Helioth
   module ControllerAdditions
     def access_to?(feature, *actions)
-      return false if !helioth.authorized_for_locale?(feature, I18n.locale)
-      return true if helioth.authorized_for_instance?(feature, actions, current_user.instance.role?)
-      return true if helioth.authorized_for_user?(feature, actions, current_user.role?)
+      return false if !locale_access_to?(feature)
+      return true if user_access_to?(feature, *actions)
+      return true if instance_access_to?(feature, *actions)
       return false
+    end
+
+    def locale_access_to?(feature)
+      helioth.authorized_for_locale?(feature, I18n.locale)
+    end
+
+    def user_access_to?(feature, *actions)
+      helioth.authorized_for_instance?(feature, actions, current_instance.role?)
+    end
+
+    def instance_access_to?(feature, *actions)
+      helioth.authorized_for_user?(feature, actions, current_user.role?)
     end
 
     def helioth
@@ -12,7 +24,7 @@ module Helioth
     end
 
     def self.included(base)
-      base.helper_method :access_to?
+      base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?
     end
   end
 end
