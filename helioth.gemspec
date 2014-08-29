@@ -1,23 +1,23 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'helioth/version'
+$:.push File.expand_path("../lib", __FILE__)
 
-Gem::Specification.new do |spec|
-  spec.name          = "helioth"
-  spec.version       = Helioth::VERSION
-  spec.authors       = ["Guillaume Montard"]
-  spec.email         = ["guillaume.montard@gmail.com"]
-  spec.summary       = %q{Feature rollout and flipping}
-  spec.description   = %q{Simple way to manage your feature rollout for customers and users}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+# Maintain your gem's version:
+require "helioth/version"
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+# Describe your gem and declare its dependencies:
+Gem::Specification.new do |s|
+  s.name        = "helioth"
+  s.version     = Helioth::VERSION
+  s.authors     = ["Guillaume Montard"]
+  s.email       = ["guillaume.montard@gmail.com"]
+  s.homepage    = "TODO"
+  s.summary     = "Feature rollout and flipping"
+  s.description = "Simple way to manage feature rollout"
+  s.license     = "MIT"
 
-  spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["test/**/*"]
+
+  s.add_dependency "rails", "~> 4.1.5"
+
+  s.add_development_dependency "sqlite3"
 end

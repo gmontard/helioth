@@ -1,8 +1,5 @@
 module Helioth
-  class Base
-    def initialize
-    end
-
+  module Dsl
     ## Configure roles
     def roles(&block)
       @roles ||= Role.new(&block)

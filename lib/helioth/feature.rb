@@ -25,7 +25,7 @@ module Helioth
 
     def locales(*locales)
       if locales.empty?
-        locales = LOCALES
+        locales = I18n.available_locales
       end
       @locales ||= locales
     end

@@ -1,12 +1,6 @@
-# Development in progess
-
-### Setup
-
-Configure by adding an "helioth_dsl.rb" file in your mdeol folder:
-```
 class HeliothDsl
 
-  include Helioth::Base
+  include Helioth::Dsl
 
   def initialize
 
@@ -56,4 +50,3 @@ class HeliothDsl
     end
   end
 end
-```

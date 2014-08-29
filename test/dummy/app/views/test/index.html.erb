@@ -1,0 +1,20 @@
+Feature is: :tutoring<br/>
+Lang is: <%=I18n.locale%><br/>
+User role is: <%=current_user.role?%><br/>
+Instance role is: <%=current_user.instance.role?%><br/><br/>
+
+User has access to feature :tutoring? <br/>
+<%if access_to?(:tutoring)%>
+  Yes
+<%else%>
+  No
+<%end%>
+
+<br/><br/>
+
+User has access to action :send of feature :tutoring? <br/>
+<%if access_to?(:tutoring, :send)%>
+  Yes
+<%else%>
+  No
+<%end%>
