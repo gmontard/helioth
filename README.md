@@ -35,7 +35,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
   roles do
     user :beta, :standard
     instance :beta, :standard, :critical
-    feature :beta, :pre_release, :production
+    feature :disabled, :beta, :pre_release, :production
   end
 ```
 
@@ -62,6 +62,10 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 - Now describe your application *features*:
 ```ruby
   features do
+    feature :no_name
+      status :disabled
+    end
+    
     feature :tutoring do
       status :pre_release
 

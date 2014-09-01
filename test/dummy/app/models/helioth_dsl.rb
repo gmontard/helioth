@@ -7,11 +7,13 @@ class HeliothDsl
     roles do
       user :beta, :standard
       instance :beta, :standard, :critical
-      feature :beta, :pre_release, :production
+      feature :disabled, :beta, :pre_release, :production
     end
 
     ## Set authorization for feature based on user and instance role
     relations do
+      feature :disabled
+
       feature :beta do
         instance :beta
         user :beta
@@ -30,6 +32,10 @@ class HeliothDsl
 
     ## Declare features
     features do
+      feature :no_name
+        status :disabled
+      end
+
       feature :tutoring do
         status :pre_release
 

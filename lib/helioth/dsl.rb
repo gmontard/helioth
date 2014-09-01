@@ -69,6 +69,10 @@ module Helioth
       }
 
       if feature
+
+        ## If a feature doesn"t have relation. For ex for a disabled status
+        return false if relations.feature[feature.status].blank?
+
         access = Array.new
         access << relations.feature[feature.status][type].include?(role)
 
@@ -83,6 +87,9 @@ module Helioth
         raise "Feature not found"
         false
       end
+    rescue
+      raise "Error in method #{__method__} of #{__FILE__}"
+      false
     end
   end
 end
