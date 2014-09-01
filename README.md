@@ -65,7 +65,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
     feature :no_name
       status :disabled
     end
-    
+
     feature :tutoring do
       status :pre_release
 
@@ -165,6 +165,12 @@ Those two methods must return an object which respond to the 'role?' method and 
       self.role.to_sym
     end
   end
+```
+
+## Testing the Gem
+Inside the repo you will find a simple Rails app that live in the */test/dummy reposotory*, start and play!
+```system
+  cd test/dummy && bundle install && rails s
 ```
 
 ## Disclaimer
