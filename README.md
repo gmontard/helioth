@@ -3,7 +3,7 @@
 ## What is the purpose of this Gem?
 
 First of all this is not an other authorization gem!
-The whole concept is about "Feature rolling" and "Feature flipping" which resume we can resume to "Feature enabling"!
+The whole concept is about "Feature rolling" and "Feature flipping" which we can resume to "Feature enabling"!
 
 **The idea is to dynamically enable (and disable) application feature depending on the user status (ex: beta, standard) and the feature stage (ex: beta, production). Then the purpose is to make this process easy, dynamic and as much automatic as possible!**
 
