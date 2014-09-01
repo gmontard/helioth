@@ -168,7 +168,7 @@ Those two methods must return an object which respond to the 'role?' method and 
 ```
 
 ## Testing the Gem
-Inside the repo you will find a simple Rails app that live in the */test/dummy reposotory*, start and play!
+Inside the repo you'll find a simple Rails app that live in the */test/dummy* directory, start and play!
 ```system
   cd test/dummy && bundle install && rails s
 ```
