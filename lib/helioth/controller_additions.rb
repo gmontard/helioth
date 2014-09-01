@@ -1,5 +1,12 @@
 module Helioth
   module ControllerAdditions
+
+    module ClassMethods
+      def load_and_authorize_for(*args)
+        ControllerResource.add_before_filter(self, :load_and_authorize_for, *args)
+      end
+    end
+
     def access_to?(feature, *actions)
       return false if !locale_access_to?(feature)
       return true if user_access_to?(feature, *actions)
@@ -24,6 +31,7 @@ module Helioth
     end
 
     def self.included(base)
+      base.extend ClassMethods
       base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?
     end
   end

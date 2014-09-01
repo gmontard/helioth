@@ -1,16 +1,12 @@
-class TestController < ApplicationController
+class TestsController < ApplicationController
+
+  load_and_authorize_for :tutoring
+
+  load_and_authorize_for :tutoring, :action=>:index, :only => :index
+
+  load_and_authorize_for :tutoring, :actions=>[:search, :index], :only => :search
 
   layout "application"
-
-  helper_method :current_user, :current_instance
-
-  def current_user
-    User.new(role: "standard", instance:{role: "beta"})
-  end
-
-  def current_instance
-    current_user.instance
-  end
 
   def index
     # puts "-----------------------"
@@ -91,4 +87,17 @@ class TestController < ApplicationController
     # puts "\n"
   end
 
+  def search
+  end
+
+
+  ## For testing purpose
+  helper_method :current_user, :current_instance
+  def current_user
+    User.new(role: "standard", instance:{role: "standard"})
+  end
+
+  def current_instance
+    current_user.instance
+  end
 end
