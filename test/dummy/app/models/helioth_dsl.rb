@@ -1,6 +1,6 @@
 class HeliothDsl
 
-  include Helioth::Base
+  include Helioth::Dsl
 
   def initialize
     ## Set roles for User, Instance and Feature
