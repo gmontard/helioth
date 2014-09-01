@@ -10397,3 +10397,24 @@ Processing by TestsController#search as HTML
   Rendered text template (0.0ms)
 Filter chain halted as #<Proc:0x007fc201131260@/Users/guillaume/Dev/helioth/lib/helioth/controller_resource.rb:10> rendered or redirected
 Completed 403 Forbidden in 32ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/tests" for 127.0.0.1 at 2014-09-01 13:59:52 +0200
+Processing by TestsController#index as HTML
+Access to controller granted for feature :tutoring)
+Access to controller granted for feature :tutoring)
+Access to controller granted for actions [:index])
+  Rendered tests/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 87ms (Views: 64.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2014-09-01 13:59:53 +0200
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2014-09-01 13:59:53 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-01 13:59:53 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-01 13:59:53 +0200

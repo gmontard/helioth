@@ -22,8 +22,8 @@ module Helioth
       unless @controller.access_to?(@feature, @actions)
         @controller.render :text=>"Access forbidden", :status=>403
       else
-        p "Access to controller granted for feature :#{@feature})"
-        p "Access to controller granted for actions #{@actions.inspect})" if @actions.present?
+        Rails.logger.debug("Access to controller granted for feature :#{@feature}")
+        Rails.logger.debug("Access to controller granted for actions #{@actions.inspect}") if @actions.present?
       end
     end
 
