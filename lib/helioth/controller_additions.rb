@@ -32,7 +32,7 @@ module Helioth
 
     def self.included(base)
       base.extend ClassMethods
-      base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?
+      base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?, :helioth
     end
   end
 end

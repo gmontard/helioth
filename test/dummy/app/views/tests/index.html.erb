@@ -1,20 +1,41 @@
-Feature is: :tutoring<br/>
-Lang is: <%=I18n.locale%><br/>
-User role is: <%=current_user.role?%><br/>
-Instance role is: <%=current_instance.role?%><br/><br/>
 
-User has access to feature :tutoring? <br/>
-<%if access_to?(:tutoring)%>
-  Yes
-<%else%>
-  No
-<%end%>
+<h3>Feature :tutoring</h3>
 
-<br/><br/>
-
-User has access to action :send of feature :tutoring? <br/>
-<%if access_to?(:tutoring, :send)%>
-  Yes
-<%else%>
-  No
-<%end%>
+<table border="1">
+  <tr>
+    <td>Status: </td>
+    <td><%=helioth.feature(:tutoring).status%></td>
+  </tr>
+  <tr>
+    <td>Lang:</td>
+    <td><%=I18n.locale%></td>
+  </tr>
+  <tr>
+    <td>User role:</td>
+    <td><%=current_user.role?%></td>
+  </tr>
+  <tr>
+    <td>Instance role:</td>
+    <td><%=current_instance.role?%></td>
+  </tr>
+  <tr>
+    <td>User access to :tutoring?</td>
+    <td>
+      <%if access_to?(:tutoring)%>
+        Yes
+      <%else%>
+        No
+      <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td>User access to :send of :tutoring?</td>
+    <td>
+      <%if access_to?(:tutoring, :send)%>
+        Yes
+      <%else%>
+        No
+      <%end%>
+    </td>
+  </tr>
+</table>
