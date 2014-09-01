@@ -1,6 +1,22 @@
-WARNING: Development in progress
+## WARNING: Development in progress
 
-## Preview Version
+## What is the purpose of this Gem?
+
+First of all this is not an other authorization gem!
+The whole concept is about "Feature rolling" and "Feature flipping" which resume we can resume to "Feature enabling"!
+
+**The idea is to dynamically enable (and disable) application feature depending on the user status (ex: beta, standard) and the feature stage (ex: beta, production). Then the purpose is to make this process easy, dynamic and as much automatic as possible!**
+
+#### So how does it works?
+
+The Gem let you describe in a simple DSL a set of possible status for user, instance (group of users) and feature. Then you describe the relation (mapping) between each feature status and a set of user and instance status.
+
+Finally you describe all your application feature and their respective release status.
+
+At the end you get access to the (not so) magic **access_to?(:feature_name)** method that does all the hard work to tell you **true** or **false**!
+
+
+## Preview Version:
 ### Setup the Gem
 
 - Add a file called "helioth_dsl.rb" inside your model folder and copy paste this code
