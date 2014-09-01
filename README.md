@@ -42,6 +42,8 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 - Then describe the relations between *feature* status and *user* and *instance* status:
 ```ruby
   relations do
+    feature :disabled
+
     feature :beta do
       instance :beta
       user :beta
