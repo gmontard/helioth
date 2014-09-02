@@ -1,6 +1,11 @@
 module Helioth
   module ControllerAdditions
 
+    def self.included(base)
+      base.extend ClassMethods
+      base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?, :helioth
+    end
+
     module ClassMethods
       def load_and_authorize_for(*args)
         ControllerResource.add_before_filter(self, :load_and_authorize_for, *args)
@@ -28,11 +33,6 @@ module Helioth
 
     def helioth
       @helioth ||= ::HeliothDsl.new()
-    end
-
-    def self.included(base)
-      base.extend ClassMethods
-      base.helper_method :access_to?, :locale_access_to?, :user_access_to?, :instance_access_to?, :helioth
     end
   end
 end

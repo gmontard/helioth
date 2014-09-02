@@ -94,7 +94,7 @@ class TestsController < ApplicationController
   ## For testing purpose
   helper_method :current_user, :current_instance
   def current_user
-    User.new(role: "standard", instance:{role: "standard"})
+    User.new(role: "standard", instance_attributes:{role: "standard"})
   end
 
   def current_instance

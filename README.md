@@ -7,7 +7,7 @@ The whole concept is about "Feature rolling" and "Feature flipping" which we can
 
 **The idea is to dynamically enable (and disable) application feature depending on the user status (ex: beta, standard) and the feature stage (ex: beta, production). Then the purpose is to make this process easy, dynamic and as much automatic as possible!**
 
-#### So how does it works?
+### So how does it works?
 
 The Gem let you describe in a simple DSL a set of possible status for user, instance (group of users) and feature. Then you describe the relation (mapping) between each feature status and a set of user and instance status.
 
@@ -16,8 +16,9 @@ Finally you describe all your application feature and their respective release s
 At the end you get access to the (not so) magic **access_to?(:feature_name)** method that does all the hard work to tell you **true** or **false**!
 
 
-## Preview Version:
-### Setup the Gem
+## Setup the Gem
+
+#### 1) Configure the DSL
 
 - Add a file called "helioth_dsl.rb" inside your model folder and copy paste this code
 ```ruby
@@ -89,16 +90,45 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 As you can see *:actions* and *:locales* are optional. Those give you more flexibility over the rollout process.
 You can find this complete DSL example inside the */examples* directory.
 
-### Using the Gem
+#### 2) Configure your Models
 
-- In your controller and view you have access to the helper method:
+- You need to link the roles *user* and *instance* to your corresponding model.
+In order to do that use the class method *has_helioth_role* in your corresponding models:
+```ruby
+  class MyUser < ActiveRecord::Base
+    ...
+    has_helioth_role :user
+    ...
+  end
+
+  class MyInstance < ActiveRecord::Base
+    ...
+    has_helioth_role :instance
+    ...
+  end
+```
+
+- By default the Gem will look for a column named "role".
+You can configure an other column by using the *column:* option with the *has_helioth_role* method:
+ ```ruby
+   class MyUser < ActiveRecord::Base
+     ...
+     has_helioth_role :user, column: "my_role_column"
+     ...
+   end
+ ```
+
+
+## Using the Gem
+
+- In your controller and view you have access to the *access_to?* helper method:
 ```ruby
   access_to?(:feature_name)
   #OR
   access_to?(:feature_name, :action_name)
 ```
 
-- For example you can use this method to change the bahavior of your view:
+- For example you can use this method to change the behavior of your view:
 ```ruby
   if access_to?(:tutoring, :search)
     link_to tutoring_path()
@@ -128,46 +158,9 @@ You can find this complete DSL example inside the */examples* directory.
   #AND
   current_instance
 ```
-Those two methods must return an object which respond to the 'role?' method and return one for the status declared (*user* status for current_user and *instance* status for current_instance).
-```ruby
-  ## For testing purpose ONLY ##
-  class ApplicationController < ActionController::Base
-    helper_method :current_user, :current_instance
+Those helpers must return an instance of *User* and *Instance* class where your defined the *has_helioth_role* class method.
 
-    def current_user
-      User.new(role: "standard", instance:{role: "standard"})
-    end
-
-    def current_instance
-      current_user.instance
-    end
-  end
-
-  class User
-    attr_accessor :role, :instance
-
-    def initialize(role: role, instance: {role: role})
-      @role = role
-      @instance = Instance.new(instance)
-    end
-
-    def role?
-      self.role.to_sym
-    end
-  end
-
-  class Instance
-    attr_accessor :role
-
-    def initialize(role: role)
-      @role = role
-    end
-
-    def role?
-      self.role.to_sym
-    end
-  end
-```
+- Your *User* and *Instance* models need to inherit from *ActiveRecord::Base*
 
 ## Testing the Gem
 Inside the repo you'll find a simple Rails app that live in the */test/dummy* directory, start and play!
@@ -177,4 +170,4 @@ Inside the repo you'll find a simple Rails app that live in the */test/dummy* di
 
 ## Disclaimer
 - This code is nowhere ready for any usage!
-- Some of the code is heavily inspired by the [CanCan](https://github.com/ryanb/cancan/) Gem.
+- Some of the code is inspired by the [CanCan](https://github.com/ryanb/cancan/) Gem.

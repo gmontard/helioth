@@ -19,6 +19,7 @@ tmp
 *.so
 *.o
 *.a
+*.log
 mkmf.log
 .DS_Store
-*.log
+*.sqlite3

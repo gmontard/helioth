@@ -1,13 +1,5 @@
-class Instance
+class Instance < ActiveRecord::Base
+  has_many :users
 
-  attr_accessor :role
-
-  def initialize(role: role)
-    @role = role
-  end
-
-  def role?
-    self.role.to_sym
-  end
-
+  has_helioth_role :instance, column: :role
 end

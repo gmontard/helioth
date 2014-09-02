@@ -1,14 +1,6 @@
-class User
+class User < ActiveRecord::Base
+  belongs_to :instance
+  accepts_nested_attributes_for :instance
 
-  attr_accessor :role, :instance
-
-  def initialize(role: role, instance: {role: role})
-    @role = role
-    @instance = Instance.new(instance)
-  end
-
-  def role?
-    self.role.to_sym
-  end
-
+  has_helioth_role :user, column: :role
 end
