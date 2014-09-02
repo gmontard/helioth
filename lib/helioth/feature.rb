@@ -5,7 +5,6 @@ module Helioth
 
     def initialize(name, &block)
       @actions = Array.new
-      @actions = Array.new
       @name = name
       @locales = I18n.available_locales
       instance_eval(&block)
