@@ -16,7 +16,33 @@ Finally you describe all your application feature and their respective release s
 At the end you get access to the (not so) magic **access_to?(:feature_name)** method that does all the hard work to tell you **true** or **false**!
 
 
-## Setup the Gem
+## Terminology and Concept
+
+In order to use this gem you need to understand those keywords:
+- **user**: Define a user of your App
+- **instance**: Define a group of users *(optional)*
+- **feature**: Define a feature or your App
+- **action**: Define a sub-feature of your App *(optional)*
+- **status**: Stage of rollout of a feature
+- **locales**: I18n locales on which a feature is available. *(optional: by defaut will use *I18n.available_locales*)*
+
+The gem will give you the access status (*true* or *false*) of a feature by checking in this exact order:
+1. Is the feature available for the current locale (*I18n.locale*)
+2. If it does, check if the user has access to the feature (based on the *relations*)
+3. If not, check if the instance has access to the feature (also based on the *relations*)
+
+```ruby
+  ## helper method
+  def access_to?(feature, *actions)
+    return false if !locale_access_to?(feature, *actions)
+    return true if helioth.roles.instance.present? && user_access_to?(feature, *actions)
+    return true if helioth.roles.user.present? && instance_access_to?(feature, *actions)
+    return false
+  end
+```
+
+
+## Setup
 
 #### 1) Configure the DSL
 
@@ -120,7 +146,7 @@ You can configure an other column by using the *column:* option with the *has_he
  ```
 
 
-## Using the Gem
+## How to use
 
 - In your controller and view you have access to the *access_to?* helper method:
 ```ruby
@@ -162,6 +188,12 @@ You can configure an other column by using the *column:* option with the *has_he
 Those helpers must return an instance of *User* and *Instance* class where your defined the *has_helioth_role* class method.
 
 - Your *User* and *Instance* models need to inherit from *ActiveRecord::Base*
+
+
+## FAQ
+- **Why using the keyword *instance*?**
+At my [company](http://www.vodeclic.com) we do a B2B SaaS App. Then our customers are companies that buy licence for their employees (aka users).
+For each customers we let them manage and configure (deeply) their own version of the App, this is an *Instance*.
 
 ## Testing the Gem
 Inside the repo you'll find a simple Rails app that live in the */test/dummy* directory, start and play!
