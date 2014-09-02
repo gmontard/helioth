@@ -20,85 +20,75 @@ module Helioth
     end
 
     ## Get feature
-    def feature(feature_name, action_name=nil)
-      if action_name.nil?
-        get_feature(feature_name)
-      else
-        get_action(feature_name, action_name)
-      end
-    end
-
-    ## Get feature
-    def get_feature(feature_name)
+    def feature(feature_name)
       @features.list.map{|feature|
         feature if feature.name == feature_name
       }.compact.first
     end
 
     ## Get feature action
-    def get_action(feature_name, action_name)
-      get_feature(feature_name).actions.map{|action|
+    def action(feature_name, action_name)
+      feature(feature_name).actions.map{|action|
         action if action.name == action_name
       }.compact.first
     end
 
     ## Check authorization
     def authorized_for_locale?(feature_name, *actions_name, locale)
-      if feature = feature(feature_name)
-        access = Array.new
-        access << feature.locales.include?(locale)
-
-        if actions_name.flatten.any?
-          access += actions_name.flatten.map{|action_name|
-            feature(feature_name).action(action_name).locales.include?(locale)
-          }
-        end
-
-        access.all?
-      else
-        raise "Feature not found"
-        false
-      end
+      authorized_for(feature_name, actions_name.flatten, {locale: locale})
     end
 
     def authorized_for_user?(feature_name, *actions_name, role)
-      authorized_for_type?(feature_name, actions_name.flatten, role, :user)
+      authorized_for(feature_name, actions_name.flatten, {role: role, type: :user})
     end
 
     def authorized_for_instance?(feature_name, *actions_name, role)
-      authorized_for_type?(feature_name, actions_name.flatten, role, :instance)
+      authorized_for(feature_name, actions_name.flatten, {role: role, type: :instance})
     end
 
-    protected
-    def authorized_for_type?(feature_name, actions_name, role, type)
+    private
+    def authorized_for(feature_name, actions_name, options={})
 
-      feature = feature(feature_name)
-      actions = actions_name.flatten.map{|action_name|
-        feature(feature_name, action_name)
-      }
+      role = options[:role]
+      type = options[:type]
+      locale = options[:locale]
+
+      feature, actions = process_input(feature_name, actions_name)
 
       if feature
 
-        ## If a feature doesn"t have relation. For ex for a disabled status
-        return false if relations.feature[feature.status].blank?
+        ## If a feature doesn"t have relation (ex: disabled feature)
+        return false if role.present? && relations.feature[feature.status].blank?
 
         access = Array.new
-        access << relations.feature[feature.status][type].include?(role)
+        access << relations.feature[feature.status][type].include?(role) if role.present?
+        access << feature.locales.include?(locale) if locale.present?
 
         if actions.any?
           access += actions.map{|action|
-            relations.feature[action.status][type].include?(role)
+            if role.present?
+              relations.feature[action.status][type].include?(role)
+            elsif locale.present?
+              action.locales.include?(locale)
+            end
           }
         end
 
         access.all?
       else
-        raise "Feature not found"
+        Rails.logger.info("Feature #{feature.try(:name)} not found")
         false
       end
     rescue
       raise "Error in method #{__method__} of #{__FILE__}"
-      false
+    end
+
+    def process_input(feature_name, actions_name)
+      feature = feature(feature_name)
+      actions = actions_name.flatten.map{|action_name|
+        action(feature_name, action_name)
+      }
+      return([feature, actions])
     end
   end
 end
