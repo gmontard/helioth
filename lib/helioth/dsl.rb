@@ -37,7 +37,7 @@ module Helioth
 
     ## Get feature action
     def get_action(feature_name, action_name)
-      feature(feature_name).actions.map{|action|
+      get_feature(feature_name).actions.map{|action|
         action if action.name == action_name
       }.compact.first
     end

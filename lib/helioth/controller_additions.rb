@@ -14,8 +14,8 @@ module Helioth
 
     def access_to?(feature, *actions)
       return false if !locale_access_to?(feature, *actions)
-      return true if user_access_to?(feature, *actions)
-      return true if instance_access_to?(feature, *actions)
+      return true if helioth.roles.instance.present? && user_access_to?(feature, *actions)
+      return true if helioth.roles.user.present? && instance_access_to?(feature, *actions)
       return false
     end
 
