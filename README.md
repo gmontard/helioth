@@ -64,7 +64,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 - Now describe your application *features*:
 ```ruby
   features do
-    feature :no_name
+    feature :no_name do
       status :disabled
     end
 
