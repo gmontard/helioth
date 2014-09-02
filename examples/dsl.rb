@@ -32,7 +32,7 @@ class HeliothDsl
 
     ## Declare features
     features do
-      feature :todo do
+      feature :no_name do
         status :disabled
       end
 
@@ -40,7 +40,8 @@ class HeliothDsl
         status :pre_release
 
         actions :search, :send do
-          status :beta
+          status :pre_release
+          locales :fr
         end
 
         actions :index do

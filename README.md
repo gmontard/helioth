@@ -74,6 +74,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 
       actions :search, :send do ## this is optional
         status :beta
+        locales :fr ## this is optional
       end
 
       actions :index do

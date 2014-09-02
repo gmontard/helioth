@@ -47,7 +47,7 @@ class TestsController < ApplicationController
     # puts "\n"
     #
     # puts "First feataure first action has status:"
-    # puts helioth.features.first.actions.first.status
+    # puts helioth.features.first.actions.try(:first).try(:status)
     # puts "\n"
     #
     # puts "---------------------------------------"

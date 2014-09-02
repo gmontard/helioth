@@ -40,7 +40,8 @@ class HeliothDsl
         status :pre_release
 
         actions :search, :send do
-          status :beta
+          status :pre_release
+          locales :fr
         end
 
         actions :index do

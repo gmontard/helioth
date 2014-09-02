@@ -28,24 +28,33 @@ module Helioth
       end
     end
 
-    # Get feature
+    ## Get feature
     def get_feature(feature_name)
-      feature = @features.list.map{|feature|
+      @features.list.map{|feature|
         feature if feature.name == feature_name
       }.compact.first
     end
 
     ## Get feature action
     def get_action(feature_name, action_name)
-      action = feature(feature_name).actions.map{|action|
+      feature(feature_name).actions.map{|action|
         action if action.name == action_name
       }.compact.first
     end
 
     ## Check authorization
-    def authorized_for_locale?(feature_name, locale)
+    def authorized_for_locale?(feature_name, *actions_name, locale)
       if feature = feature(feature_name)
-        feature.locales.include?(locale)
+        access = Array.new
+        access << feature.locales.include?(locale)
+
+        if actions_name.flatten.any?
+          access += actions_name.flatten.map{|action_name|
+            feature(feature_name).action(action_name).locales.include?(locale)
+          }
+        end
+
+        access.all?
       else
         raise "Feature not found"
         false

@@ -13,14 +13,14 @@ module Helioth
     end
 
     def access_to?(feature, *actions)
-      return false if !locale_access_to?(feature)
+      return false if !locale_access_to?(feature, *actions)
       return true if user_access_to?(feature, *actions)
       return true if instance_access_to?(feature, *actions)
       return false
     end
 
-    def locale_access_to?(feature)
-      helioth.authorized_for_locale?(feature, I18n.locale)
+    def locale_access_to?(feature, *actions)
+      helioth.authorized_for_locale?(feature, actions, I18n.locale)
     end
 
     def user_access_to?(feature, *actions)
