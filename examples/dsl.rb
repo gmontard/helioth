@@ -32,7 +32,7 @@ class HeliothDsl
 
     ## Declare features
     features do
-      feature :todo
+      feature :todo do
         status :disabled
       end
 

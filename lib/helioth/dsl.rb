@@ -32,7 +32,7 @@ module Helioth
     def get_feature(feature_name)
       feature = @features.list.map{|feature|
         feature if feature.name == feature_name
-      }.first
+      }.compact.first
     end
 
     ## Get feature action
