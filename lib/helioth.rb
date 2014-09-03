@@ -8,3 +8,17 @@ require 'helioth/action'
 require 'helioth/controller_additions'
 require 'helioth/controller_resource'
 require 'helioth/model_additions'
+
+module Helioth
+  def self.dsl
+    Helioth.const_set("DSL", Helioth::Dsl.load(Rails.root + 'config/helioth.rb')) unless const_defined?("DSL")
+  end
+
+  def self.const_missing(name)
+    if name == :DSL
+      Helioth.dsl
+    else
+      super
+    end
+  end
+end

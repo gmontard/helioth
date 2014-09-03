@@ -1,5 +1,24 @@
 module Helioth
-  module Dsl
+  class Dsl
+
+    def initialize
+      Rails.logger.debug("Loading the DSL for the first time")
+    end
+
+    ##Should be loaded only one time using Helioth::DSL.dsl
+    def self.load(filename)
+      dsl = new
+      dsl.instance_eval(File.read(filename))
+      return(dsl)
+    rescue Errno::ENOENT
+      raise "Helioth::DSL DSL file missing"
+    end
+
+    ## In case the DSL is not well used
+    def method_missing(method_name, *args, &block)
+      raise "No such method #{__method__} in #{__FILE__}"
+    end
+
     ## Configure roles
     def roles(&block)
       @roles ||= Role.new(&block)

@@ -20,6 +20,8 @@ module Helioth
 
     def load_and_authorize_for
       unless @controller.access_to?(@feature, @actions)
+        ##TODO change the behavior based on rails env
+        Rails.logger.info("Access to controller forbidden for feature :#{@feature}")
         @controller.render :text=>"Access forbidden", :status=>403
       else
         Rails.logger.debug("Access to controller granted for feature :#{@feature}")

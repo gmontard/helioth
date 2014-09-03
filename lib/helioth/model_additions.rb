@@ -1,6 +1,5 @@
 module Helioth
   module Modeladditions
-
     def self.included(base)
       base.extend ClassMethods
     end
@@ -21,17 +20,12 @@ module Helioth
 
       def roles_for(options)
         case options when :user
-          roles = helioth.roles.user.map(&:to_s)
+          roles = DSL.roles.user.map(&:to_s)
         when :instance
-          roles = helioth.roles.instance.map(&:to_s)
+          roles = DSL.roles.instance.map(&:to_s)
         else
           raise "Invalid option #{options} for method #{__method__}"
         end
-      end
-
-      ##TODO Need to find an other way than re-instanciate the class a second time...
-      def helioth
-        @helioth ||= ::HeliothDsl.new()
       end
     end
 

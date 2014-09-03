@@ -35,8 +35,8 @@ The gem will give you the access status (*true* or *false*) of a feature by chec
   ## helper method
   def access_to?(feature, *actions)
     return false if !locale_access_to?(feature, *actions)
-    return true if helioth.roles.instance.present? && user_access_to?(feature, *actions)
-    return true if helioth.roles.user.present? && instance_access_to?(feature, *actions)
+    return true if DSL.roles.user.present? && user_access_to?(feature, *actions)
+    return true if DSL.roles.instance.present? && instance_access_to?(feature, *actions)
     return false
   end
 ```
@@ -44,19 +44,11 @@ The gem will give you the access status (*true* or *false*) of a feature by chec
 
 ## Setup
 
-#### 1) Configure the DSL
+#### 1) DSL Configuration
 
-- Add a file called "helioth_dsl.rb" inside your model folder and copy paste this code
-```ruby
-  class HeliothDsl
-    include Helioth::Base
+- Add an "helioth.rb" file inside your *config/* folder.
 
-    def initialize
-    end
-  end
-```
-
-- Now it's time to configure the Gem.
+- Now it's time to use the DSL!
 First describe the different roles (*user*, *instance* and *feature*) and affect each of them a set of status:
 ```ruby
   roles do
@@ -117,7 +109,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 As you can see *:actions* and *:locales* are optional. Those give you more flexibility over the rollout process.
 You can find this complete DSL example inside the */examples* directory.
 
-#### 2) Configure your Models
+#### 2) Model configuration
 
 - You need to link the roles *user* and *instance* to your corresponding model.
 In order to do that use the class method *has_helioth_role* in your corresponding models:
@@ -177,7 +169,21 @@ You can configure an other column by using the *column:* option with the *has_he
   :only, :except, :if, :unless
 ```
 
-## Pre-requisite
+- You can also access the main Helioth object by calling:
+```ruby
+  ## Access DSL object
+  Helioth::DSL.method_name
+
+  ## For ex. retrieved all features
+  Helioth::DSL.features
+
+  ## For ex. retrieve info about a specific feature
+  Helioth::DSL.feature(:feature_name)
+
+  ## Etc.. for more information check the lib/helioth/dsl.rb file
+```
+
+## Requirements
 
 - Internally this Gem rely on two helper methods that must be available in your app:
 ```ruby
@@ -201,5 +207,4 @@ Inside the repo you'll find a simple Rails app that live in the */test/dummy* di
 ```
 
 ## Disclaimer
-- This code is nowhere ready for any usage!
-- Some of the code is inspired by the [CanCan](https://github.com/ryanb/cancan/) Gem.
+- This code is not yet tested!
