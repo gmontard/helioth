@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Helioth::Relation do
 
   before(:all) do
-    @role = Helioth::Relation.new do
+    @relation = Helioth::Relation.new do
       feature :disabled
 
       feature :beta do
@@ -23,25 +23,34 @@ describe Helioth::Relation do
     end
   end
 
-  describe "#feature" do
-    pending
-    it "" do
+  describe "@feature" do
+    it "should be a Hash" do
+      expect(@relation.instance_variable_get(:@feature)).to be_an_instance_of(Hash)
+    end
 
+    it "should contain all feature status as hash keys" do
+      expect(@relation.instance_variable_get(:@feature).keys).to contain_exactly(:beta, :pre_release, :production)
+    end
+
+    it "should contain for each keys a hash" do
+      @relation.instance_variable_get(:@feature).each{|k,v|
+        expect(v).to be_an_instance_of(Hash)
+      }
+    end
+
+    it "should contain for each keys a hash with :instance and :user keys" do
+      @relation.instance_variable_get(:@feature).each{|k,v|
+        expect(v.keys).to contain_exactly(:user, :instance)
+      }
+    end
+
+    it "should match all relations described in the DSL" do
+      expect(@relation.instance_variable_get(:@feature)[:beta][:instance]).to contain_exactly(:beta)
+      expect(@relation.instance_variable_get(:@feature)[:pre_release][:instance]).to contain_exactly(:beta, :standard)
+      expect(@relation.instance_variable_get(:@feature)[:production][:instance]).to contain_exactly(:beta, :standard, :critical)
+      expect(@relation.instance_variable_get(:@feature)[:beta][:user]).to contain_exactly(:beta)
+      expect(@relation.instance_variable_get(:@feature)[:pre_release][:user]).to contain_exactly(:beta)
+      expect(@relation.instance_variable_get(:@feature)[:production][:user]).to contain_exactly(:beta, :standard)
     end
   end
-
-  describe "#instance" do
-    pending
-    it "" do
-
-    end
-  end
-
-  describe "#user" do
-    pending
-    it "" do
-
-    end
-  end
-
 end
