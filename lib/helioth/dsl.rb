@@ -1,14 +1,16 @@
 module Helioth
   class Dsl
 
+    DSL_FILE = Pathname.new(Rails.root || '').join("config", "helioth.rb").to_s unless defined? DSL_FILE
+
     def initialize
       Rails.logger.debug("Loading the DSL for the first time")
     end
 
     ##Should be loaded only one time using Helioth::DSL.dsl
-    def self.load(filename)
+    def self.load(file = nil)
       dsl = new
-      dsl.instance_eval(File.read(filename))
+      dsl.instance_eval(file.nil? ? File.read(DSL_FILE) : File.read(file))
       return(dsl)
     rescue Errno::ENOENT
       raise "Helioth::DSL DSL file missing"

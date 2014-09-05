@@ -10,8 +10,9 @@ require 'helioth/controller_resource'
 require 'helioth/model_additions'
 
 module Helioth
-  def self.dsl
-    Helioth.const_set("DSL", Helioth::Dsl.load(Rails.root + 'config/helioth.rb')) unless const_defined?("DSL")
+
+  def self.dsl(file = nil)
+    Helioth.const_set("DSL", Helioth::Dsl.load(file)) unless const_defined?("DSL")
   end
 
   def self.const_missing(name)

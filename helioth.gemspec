@@ -21,8 +21,10 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activerecord', '>= 3.0'
   s.add_dependency 'i18n'
+  ##TODO Add rails as a dependency
 
   s.add_development_dependency "rails", "~> 4.1.5"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "pry"
+  s.add_development_dependency "rspec-rails", "~> 3.0.0"
 end
