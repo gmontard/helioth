@@ -11,11 +11,11 @@ Gem::Specification.new do |s|
   s.email       = ["guillaume.montard@gmail.com"]
   s.homepage    = "https://github.com/gmontard/helioth"
   s.summary     = "Feature rollout and flipping"
-  s.description = "Simple way to manage feature rollout"
+  s.description = "Simple way to manage feature rollout / flipping"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
 
   s.required_ruby_version = '>= 2.0'
 

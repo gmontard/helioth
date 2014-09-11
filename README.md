@@ -1,4 +1,5 @@
-## WARNING: Development in progress
+[![Build Status](https://travis-ci.org/Integralist/Sinderella.png?branch=master)](https://travis-ci.org/Integralist/Sinderella)  [![Gem Version](https://badge.fury.io/rb/sinderella.png)](http://badge.fury.io/rb/sinderella) [![Coverage Status](https://img.shields.io/coveralls/gmontard/helioth.svg)](https://coveralls.io/r/gmontard/helioth?branch=master)
+
 
 ## What is the purpose of this Gem?
 
@@ -184,6 +185,7 @@ You can configure an other column by using the *column:* option with the *has_he
 
 ## Requirements
 
+- ActiveRecord >= 3.0 and Ruby >= 2.0.0
 - Internally this Gem rely on two helper methods that must be available in your app:
 ```ruby
   current_user
