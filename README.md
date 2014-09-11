@@ -218,3 +218,7 @@ bundle exec rake
 ```system
   cd test/dummy && bundle install && rails s
 ```
+
+## License
+
+Copyright © 2014 Guillaume Montard and Vodeclic SAS released under the MIT license
