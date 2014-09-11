@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Integralist/Sinderella.png?branch=master)](https://travis-ci.org/Integralist/Sinderella)  [![Gem Version](https://badge.fury.io/rb/sinderella.png)](http://badge.fury.io/rb/sinderella) [![Coverage Status](https://img.shields.io/coveralls/gmontard/helioth.svg)](https://coveralls.io/r/gmontard/helioth?branch=master)
+[![Build Status](https://travis-ci.org/gmontard/helioth.svg?branch=v0.1.0)](https://travis-ci.org/gmontard/helioth)  [![Gem Version](https://badge.fury.io/rb/helioth.png)](http://badge.fury.io/for/rb/helioth) [![Coverage Status](https://img.shields.io/coveralls/gmontard/helioth.svg)](https://coveralls.io/r/gmontard/helioth?branch=master)
 
 
 ## What is the purpose of this Gem?
