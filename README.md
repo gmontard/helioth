@@ -44,7 +44,14 @@ The gem will give you the access status (*true* or *false*) of a feature by chec
 
 ## Setup
 
-#### 1) DSL Configuration
+#### 1) Install the Gem
+
+Add to your Gemfile:
+```ruby
+  gem 'helioth', '~> 0.1.0'
+```
+
+#### 2) DSL Configuration
 
 - Add an "helioth.rb" file inside your *config/* folder.
 
@@ -109,7 +116,7 @@ First describe the different roles (*user*, *instance* and *feature*) and affect
 As you can see *:actions* and *:locales* are optional. Those give you more flexibility over the rollout process.
 You can find this complete DSL example inside the */examples* directory.
 
-#### 2) Model configuration
+#### 3) Model configuration
 
 - You need to link the roles *user* and *instance* to your corresponding model.
 In order to do that use the class method *has_helioth_role* in your corresponding models:
@@ -139,7 +146,7 @@ You can configure an other column by using the *column:* option with the *has_he
  ```
 
 
-## How to use
+## How to use in your code
 
 - In your controller and view you have access to the *access_to?* helper method:
 ```ruby
