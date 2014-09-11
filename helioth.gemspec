@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Helioth::VERSION
   s.authors     = ["Guillaume Montard"]
   s.email       = ["guillaume.montard@gmail.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/gmontard/helioth"
   s.summary     = "Feature rollout and flipping"
   s.description = "Simple way to manage feature rollout"
   s.license     = "MIT"
@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activerecord', '>= 3.0'
   s.add_dependency 'i18n'
-  ##TODO Add rails as a dependency
 
   s.add_development_dependency "rails", "~> 4.1.5"
   s.add_development_dependency "sqlite3"
