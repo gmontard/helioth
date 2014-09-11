@@ -202,10 +202,11 @@ Those helpers must return an instance of *User* and *Instance* class where your 
 At my [company](http://www.vodeclic.com) we develop a B2B SaaS App. Our customers are companies that buy licences for their employees (aka users). For each customers we let them manage and configure their own version of our App, which is called an *Instance*.
 
 ## Testing the Gem
-Inside the repo you'll find a simple Rails app that live in the */test/dummy* directory, start and play!
+- Run the RSpec tests:
+```system
+bundle exec rake
+```
+- Also you will you'll find a simple Rails app that live in the */test/dummy* directory, start and play!
 ```system
   cd test/dummy && bundle install && rails s
 ```
-
-## Disclaimer
-- This code is not yet tested!
