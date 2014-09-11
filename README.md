@@ -41,7 +41,6 @@ The gem will give you the access status (*true* or *false*) of a feature by chec
   end
 ```
 
-
 ## Setup
 
 #### 1) DSL Configuration

@@ -23,11 +23,11 @@ module Helioth
     end
 
     def user_access_to?(feature, *actions)
-      DSL.authorized_for_user?(feature, actions, current_instance.role?)
+      DSL.authorized_for_user?(feature, actions, current_user.helioth_role?)
     end
 
     def instance_access_to?(feature, *actions)
-      DSL.authorized_for_instance?(feature, actions, current_user.role?)
+      DSL.authorized_for_instance?(feature, actions, current_instance.helioth_role?)
     end
   end
 end

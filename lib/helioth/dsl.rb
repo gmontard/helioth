@@ -82,8 +82,6 @@ module Helioth
         return false if role.present? && relations.feature[feature.status].blank?
 
         access = Array.new
-        access << relations.feature[feature.status][type].include?(role) if role.present?
-        access << feature.locales.include?(locale) if locale.present?
 
         if actions.any?
           access += actions.map{|action|
@@ -93,6 +91,9 @@ module Helioth
               action.locales.include?(locale)
             end
           }
+        else
+          access << relations.feature[feature.status][type].include?(role) if role.present?
+          access << feature.locales.include?(locale) if locale.present?
         end
 
         access.all?
