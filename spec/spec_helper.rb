@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'pry'
 
 ENV["RAILS_ENV"] = "test"
