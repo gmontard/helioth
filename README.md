@@ -129,6 +129,7 @@ In order to do that use the class method *has_helioth_role* in your correspondin
 
 - By default the Gem will look for a column named "role".
 You can configure an other column by using the *column:* option with the *has_helioth_role* method:
+
  ```ruby
    class MyUser < ActiveRecord::Base
      ...
