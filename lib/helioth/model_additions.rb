@@ -13,15 +13,15 @@ module Helioth
         add_role_validation
 
         define_method "#{@@role_column}?" do
-          eval("#{@@role_column}.to_sym")
+          public_send(@@role_column).to_sym
         end
 
         define_method "helioth_role?" do
-          eval("#{@@role_column}?")
+          public_send("#{@@role_column}?")
         end
 
         define_method "is_#{@@role_column}?" do |arg|
-          eval("self.#{@@role_column}.to_sym") == arg.to_sym
+          public_send(@@role_column) == arg.to_s
         end
       end
 
