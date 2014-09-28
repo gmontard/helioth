@@ -22,17 +22,17 @@ describe Helioth::ModelAdditions do
     describe "#validations" do
       it "should validate role based on DSL defintion" do
         Helioth::DSL.roles.user.each{|role|
-          expect(User.create(role: role.to_s)).to be_valid
+          expect(User.new(role: role.to_s)).to be_valid
         }
 
         Helioth::DSL.roles.instance.each{|role|
-          expect(Instance.create(role: role.to_s)).to be_valid
+          expect(Instance.new(role: role.to_s)).to be_valid
         }
       end
 
       it "shouldn't validate role based on DSL definition" do
-        expect(User.create(role: "none")).to be_invalid
-        expect(Instance.create(role: "none")).to be_invalid
+        expect(User.new(role: "none")).to be_invalid
+        expect(Instance.new(role: "none")).to be_invalid
       end
     end
 
@@ -87,17 +87,17 @@ describe Helioth::ModelAdditions do
     describe "#validations" do
       it "should validate role based on DSL defintion" do
         Helioth::DSL.roles.user.each{|role|
-          expect(User2.create(status: role.to_s)).to be_valid
+          expect(User2.new(status: role.to_s)).to be_valid
         }
 
         Helioth::DSL.roles.instance.each{|role|
-          expect(Instance2.create(status: role.to_s)).to be_valid
+          expect(Instance2.new(status: role.to_s)).to be_valid
         }
       end
 
       it "shouldn't validate role based on DSL definition" do
-        expect(User2.create(status: "none")).to be_invalid
-        expect(Instance2.create(status: "none")).to be_invalid
+        expect(User2.new(status: "none")).to be_invalid
+        expect(Instance2.new(status: "none")).to be_invalid
       end
     end
 
