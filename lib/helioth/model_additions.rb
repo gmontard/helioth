@@ -26,7 +26,7 @@ module Helioth
       end
 
       def add_role_validation
-        self.send(:validates, @@role_column.to_sym, inclusion: { in: available_roles, message: "%{value} is not a valid value" }, allow_blank: true)
+        validates @@role_column.to_sym, inclusion: { in: available_roles, message: "%{value} is not a valid value" }, allow_blank: true
       end
 
       def available_roles
