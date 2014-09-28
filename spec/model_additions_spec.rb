@@ -39,20 +39,16 @@ describe Helioth::ModelAdditions do
     describe "#role?" do
       it "should return user role as a Symbol" do
         expect(User.new(role: "beta").role).to be(:beta)
-        expect(User.new(role: "beta").role).to be_an_instance_of(Symbol)
 
         expect(Instance.new(role: "production").role).to be(:production)
-        expect(Instance.new(role: "production").role).to be_an_instance_of(Symbol)
       end
     end
 
     describe "#helioth_role?" do
       it "should return user role as a Symbol" do
         expect(User.new(role: "beta").helioth_role?).to be(:beta)
-        expect(User.new(role: "beta").helioth_role?).to be_an_instance_of(Symbol)
 
         expect(Instance.new(role: "production").helioth_role?).to be(:production)
-        expect(Instance.new(role: "production").helioth_role?).to be_an_instance_of(Symbol)
       end
     end
 
@@ -108,20 +104,16 @@ describe Helioth::ModelAdditions do
     describe "#role?" do
       it "should return user role as a Symbol" do
         expect(User2.new(status: "beta").status).to be(:beta)
-        expect(User2.new(status: "beta").status).to be_an_instance_of(Symbol)
 
         expect(Instance2.new(status: "production").status).to be(:production)
-        expect(Instance2.new(status: "production").status).to be_an_instance_of(Symbol)
       end
     end
 
     describe "#helioth_role?" do
       it "should return user role as a Symbol" do
         expect(User2.new(status: "beta").helioth_role?).to be(:beta)
-        expect(User2.new(status: "beta").helioth_role?).to be_an_instance_of(Symbol)
 
         expect(Instance2.new(status: "production").helioth_role?).to be(:production)
-        expect(Instance2.new(status: "production").helioth_role?).to be_an_instance_of(Symbol)
       end
     end
 
