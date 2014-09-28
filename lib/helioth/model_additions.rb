@@ -30,10 +30,11 @@ module Helioth
       end
 
       def available_roles
-        case @@role_instance when :user
-          roles = DSL.roles.user.map(&:to_s)
+        case @@role_instance
+        when :user
+          DSL.roles.user.map(&:to_s)
         when :instance
-          roles = DSL.roles.instance.map(&:to_s)
+          DSL.roles.instance.map(&:to_s)
         else
           raise "Invalid option #{options} for method #{__method__}"
         end
