@@ -22,37 +22,33 @@ describe Helioth::ModelAdditions do
     describe "#validations" do
       it "should validate role based on DSL defintion" do
         Helioth::DSL.roles.user.each{|role|
-          expect(User.create(role: role.to_s)).to be_valid
+          expect(User.new(role: role.to_s)).to be_valid
         }
 
         Helioth::DSL.roles.instance.each{|role|
-          expect(Instance.create(role: role.to_s)).to be_valid
+          expect(Instance.new(role: role.to_s)).to be_valid
         }
       end
 
       it "shouldn't validate role based on DSL definition" do
-        expect(User.create(role: "none")).to be_invalid
-        expect(Instance.create(role: "none")).to be_invalid
+        expect(User.new(role: "none")).to be_invalid
+        expect(Instance.new(role: "none")).to be_invalid
       end
     end
 
     describe "#role?" do
       it "should return user role as a Symbol" do
-        expect(User.new(role: "beta").role?).to be(:beta)
-        expect(User.new(role: "beta").role?).to be_an_instance_of(Symbol)
+        expect(User.new(role: "beta").role).to be(:beta)
 
-        expect(Instance.new(role: "production").role?).to be(:production)
-        expect(Instance.new(role: "production").role?).to be_an_instance_of(Symbol)
+        expect(Instance.new(role: "production").role).to be(:production)
       end
     end
 
     describe "#helioth_role?" do
       it "should return user role as a Symbol" do
         expect(User.new(role: "beta").helioth_role?).to be(:beta)
-        expect(User.new(role: "beta").helioth_role?).to be_an_instance_of(Symbol)
 
         expect(Instance.new(role: "production").helioth_role?).to be(:production)
-        expect(Instance.new(role: "production").helioth_role?).to be_an_instance_of(Symbol)
       end
     end
 
@@ -91,37 +87,33 @@ describe Helioth::ModelAdditions do
     describe "#validations" do
       it "should validate role based on DSL defintion" do
         Helioth::DSL.roles.user.each{|role|
-          expect(User2.create(status: role.to_s)).to be_valid
+          expect(User2.new(status: role.to_s)).to be_valid
         }
 
         Helioth::DSL.roles.instance.each{|role|
-          expect(Instance2.create(status: role.to_s)).to be_valid
+          expect(Instance2.new(status: role.to_s)).to be_valid
         }
       end
 
       it "shouldn't validate role based on DSL definition" do
-        expect(User2.create(status: "none")).to be_invalid
-        expect(Instance2.create(status: "none")).to be_invalid
+        expect(User2.new(status: "none")).to be_invalid
+        expect(Instance2.new(status: "none")).to be_invalid
       end
     end
 
     describe "#role?" do
       it "should return user role as a Symbol" do
-        expect(User2.new(status: "beta").status?).to be(:beta)
-        expect(User2.new(status: "beta").status?).to be_an_instance_of(Symbol)
+        expect(User2.new(status: "beta").status).to be(:beta)
 
-        expect(Instance2.new(status: "production").status?).to be(:production)
-        expect(Instance2.new(status: "production").status?).to be_an_instance_of(Symbol)
+        expect(Instance2.new(status: "production").status).to be(:production)
       end
     end
 
     describe "#helioth_role?" do
       it "should return user role as a Symbol" do
         expect(User2.new(status: "beta").helioth_role?).to be(:beta)
-        expect(User2.new(status: "beta").helioth_role?).to be_an_instance_of(Symbol)
 
         expect(Instance2.new(status: "production").helioth_role?).to be(:production)
-        expect(Instance2.new(status: "production").helioth_role?).to be_an_instance_of(Symbol)
       end
     end
 

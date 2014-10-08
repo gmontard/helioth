@@ -12,28 +12,34 @@ module Helioth
 
         add_role_validation
 
+        define_method @@role_column do
+          super().to_sym
+        end
+
         define_method "#{@@role_column}?" do
-          eval("#{@@role_column}.to_sym")
+          warn "[DEPRECATED] ##{@@role_column}? is deprecated. Please use ##{@@role_column} instead."
+          public_send(@@role_column).to_sym
         end
 
         define_method "helioth_role?" do
-          eval("#{@@role_column}?")
+          public_send("#{@@role_column}?")
         end
 
         define_method "is_#{@@role_column}?" do |arg|
-          eval("self.#{@@role_column}.to_sym") == arg.to_sym
+          public_send(@@role_column) == arg.to_sym
         end
       end
 
       def add_role_validation
-        self.send(:validates, @@role_column.to_sym, inclusion: { in: available_roles, message: "%{value} is not a valid value" }, allow_blank: true)
+        validates @@role_column.to_sym, inclusion: { in: available_roles, message: "%{value} is not a valid value" }, allow_blank: true
       end
 
       def available_roles
-        case @@role_instance when :user
-          roles = DSL.roles.user.map(&:to_s)
+        case @@role_instance
+        when :user
+          DSL.roles.user
         when :instance
-          roles = DSL.roles.instance.map(&:to_s)
+          DSL.roles.instance
         else
           raise "Invalid option #{options} for method #{__method__}"
         end
